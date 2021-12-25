@@ -1,0 +1,23 @@
+version: "3"
+
+networks:
+  raindance:
+
+services:
+  postgres:
+    image: postgres:14.1
+    environment:
+      - POSTGRES_USER=raindance
+      - POSTGRES_PASSWORD=raindance
+      - POSTGRES_DB=raindance
+    networks:
+      - raindance
+    ports:
+      - "5432:5432"
+    # command: [postgres, -c, max_connections=10000]
+  redis:
+    image: redis:6.2
+    networks:
+      - raindance
+    ports:
+      - "6379:6379"
